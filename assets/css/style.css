@@ -1,0 +1,97 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #303841;
+}
+
+#loading {
+    display: block;
+    background-image: url('../../pewpew.gif');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+#tier-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: white;
+}
+
+.tier {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #b890dd;
+    border: #d79075 5px solid;
+    border-radius: 20px;
+    padding: 1rem;
+    min-height: 100px;
+}
+
+.tier::before {
+    content: attr(data-tier);
+    font-size: 2rem;
+    font-weight: bold;
+    margin-right: 1rem;
+}
+
+.tier:hover {
+    background-color: #96bfc7;
+    border: white 5px solid;
+}
+
+#character-pool {
+    padding: 1rem;
+    margin-top: 1rem;
+    min-height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.player-info {
+    position: relative;
+    display: flex;
+    width: 100px;
+    height: 100px;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    color: white;
+}
+
+.player-elo {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 0;
+    z-index: 1;
+}
+
+.player {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 20px;
+    z-index: 2;
+    border-radius: 20px;
+}
+
+.player-name {
+    position: absolute;
+    top: -15px;
+    display: block;
+    margin: 0;
+}
