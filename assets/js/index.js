@@ -21,7 +21,7 @@ document.addEventListener("dragstart", event => {
     const target = event.target.closest('.player-info');
     if (target) {
         event.dataTransfer.setData("Player", target.dataset.player);
-        target.style.opacity = '0.2'
+        target.style.opacity = '0.2';
     }
 });
 
