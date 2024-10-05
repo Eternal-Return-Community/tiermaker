@@ -21,9 +21,7 @@ document.addEventListener("dragstart", event => {
     const target = event.target.closest('.player-info');
     if (target) {
         event.dataTransfer.setData("Player", target.dataset.player);
-        setTimeout(() => {
-            target.style.opacity = '0.5';
-        }, 0);
+        target.style.opacity = '0.2'
     }
 });
 
@@ -43,11 +41,7 @@ document.addEventListener("drop", event => {
 
     const data = event.dataTransfer.getData("Player");
     const playerElement = document.querySelector(`[data-player='${data}']`);
-
-    const tier = event.target.closest('.tier');
-    if (tier && playerElement) {
-        tier.appendChild(playerElement); 
-    }
+    event.target.closest('.tier').appendChild(playerElement); 
 });
 
 const disableLoading = () => {
