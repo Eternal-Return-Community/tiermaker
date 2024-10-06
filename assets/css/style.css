@@ -92,3 +92,17 @@ main {
     display: block;
     color: white;
 }
+
+#download {
+    display: block;
+    background-color: gray;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    margin: auto;
+    margin-top: 25px;
+}
+
+#download:hover {
+    background-color: #a63d5b;
+}

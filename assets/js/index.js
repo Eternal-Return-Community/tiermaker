@@ -35,7 +35,17 @@ document.addEventListener("dragend", event => {
         isDragging = false;
         stopScrolling();
     }
+    btn()
 });
+
+const btn = () => {
+    const x = document.getElementById('download');
+    x.disabled = false
+    x.style.background = '#79afb9'
+    x.style.color = 'white'
+    x.style.cursor= 'pointer';
+
+} 
 
 document.addEventListener("dragover", event => {
     event.preventDefault();
@@ -73,7 +83,7 @@ function startScrolling(speed) {
     if (!scrollInterval) {
         scrollInterval = setInterval(() => {
             window.scrollBy(0, speed);
-        }, 16); 
+        }, 16);
     }
 }
 
@@ -88,6 +98,16 @@ const disableLoading = () => {
     document.querySelector('body').removeAttribute('id')
     document.querySelector('main').removeAttribute('style')
 }
+
+document.getElementById('download').addEventListener('click', () =>
+    domtoimage.toPng(document.getElementById('tier-container')).then(url => download(url)));
+
+const download = (url) => {
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'imagem.jpg';
+    link.click();
+};
 
 const init = async () => await characterPool();
 
