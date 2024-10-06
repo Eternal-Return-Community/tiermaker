@@ -35,8 +35,7 @@ main {
     background-color: #b890dd;
     border: #d79075 5px solid;
     border-radius: 20px;
-    padding: 1rem;
-    min-height: 100px;
+    padding: 10px;
 }
 
 .tier::before {
@@ -67,31 +66,29 @@ main {
     height: 100px;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 20px;
     border-radius: 10px;
-    color: white;
+    cursor: pointer;
 }
 
 .player-elo {
     position: absolute;
-    width: 100px;
-    height: 100px;
-    top: 0;
+    width: 50px;
+    height: 50px;
+    top: 20px;
     z-index: 1;
 }
 
 .player {
     position: absolute;
-    width: 50px;
-    height: 50px;
-    top: 20px;
+    width: 36px;
+    height: 36px;
+    top: 25px;
     z-index: 2;
     border-radius: 20px;
 }
 
 .player-name {
     position: absolute;
-    top: -15px;
     display: block;
-    margin: 0;
+    color: white;
 }
