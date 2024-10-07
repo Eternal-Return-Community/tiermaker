@@ -1,15 +1,14 @@
-const REGION = 'saopaulo';
 const SEASON_ID = '14';
 const TEAM_MODE = 'teamMode';
 
-const leaderboard = async () => {
-    const response = await fetch(`https://er.dakgg.io/api/v0/leaderboard?page=1${query()}`);
+const leaderboard = async (region) => {
+    const response = await fetch(`https://er.dakgg.io/api/v0/leaderboard?page=1${query(region)}`);
     return await response.json();
 }
 
-const query = () => new URLSearchParams({
+const query = (region) => new URLSearchParams({
     seasonKey: `SEASON_${SEASON_ID}`,
-    serverName: REGION,
+    serverName: region,
     teamMode: TEAM_MODE,
     hl: 'en'
 }).toString()
@@ -24,8 +23,8 @@ const characterById = (mostCharacters, characterById) => {
 }
 
 
-export default async () => {
-    const data = await leaderboard();
+export default async (region) => {
+    const data = await leaderboard(region);
     return data.leaderboards.map(({ userNum, nickname, rank, mostCharacters }) => ({
         nickname,
         elo: 'https://cdn.dak.gg'.concat(data.playerTierByUserNum[userNum].imageUrl),
