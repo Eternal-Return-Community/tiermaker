@@ -1,9 +1,15 @@
-const availableRegions = ['global', 'seoul', 'ohio', 'frankfurt', 'asia2', 'saopaulo'];
+const availableRegions = {
+    "sa": "saopaulo",
+    "na": "ohio",
+    "kr": "seoul",
+    "euw": "frankfurt",
+    "asia2": "asia2"
+};
 
 export default () => {
     while (true) {
         const region = prompt('Region: ')
-        if (availableRegions.includes(region?.toLowerCase())) return region;
-        alert(`Available Regions: ${availableRegions.join(', ')}`);
+        if (Object.keys(availableRegions).includes(region?.toLowerCase())) return region;
+        alert(`Available Regions: ${Object.keys(availableRegions).join(', ').toUpperCase()}`);
     }
 }
