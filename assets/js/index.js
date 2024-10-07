@@ -7,7 +7,7 @@ const characterPool = async () => {
     const leaderboards = await leaderboard()
     const pool = document.getElementById('character-pool');
 
-    for (const { nickname, rank, elo, character } of leaderboards) {
+    for (const { nickname, elo, character } of leaderboards) {
         pool.innerHTML += `
         <div class='player-info' draggable="true" data-player=${nickname}>
             <span class='player-name'>${nickname}</span>
@@ -16,14 +16,15 @@ const characterPool = async () => {
         </div>
         `;
     }
+
     disableLoading()
 }
 
 document.addEventListener("dragstart", event => {
     const target = event.target.closest('.player-info');
     if (target) {
-        event.dataTransfer.setData("Player", target.dataset.player);
         target.style.opacity = '0.2';
+        event.dataTransfer.setData("Player", target.dataset.player);
         isDragging = true;
     }
 });
@@ -31,6 +32,7 @@ document.addEventListener("dragstart", event => {
 document.addEventListener("dragend", event => {
     const target = event.target.closest('.player-info');
     if (target) {
+        target.style.cursor = 'grab';
         target.style.opacity = '1';
         isDragging = false;
         stopScrolling();
@@ -44,12 +46,12 @@ const btn = () => {
     x.style.background = '#79afb9'
     x.style.color = 'white'
     x.style.cursor= 'pointer';
-
 } 
 
 document.addEventListener("dragover", event => {
     event.preventDefault();
     if (isDragging) {
+
         const scrollThreshold = 50;
         const scrollSpeed = 5;
 
@@ -63,6 +65,7 @@ document.addEventListener("dragover", event => {
         } else {
             stopScrolling();
         }
+
     }
 });
 
@@ -73,9 +76,9 @@ document.addEventListener("drop", event => {
 
     const data = event.dataTransfer.getData("Player");
     const playerElement = document.querySelector(`[data-player='${data}']`);
-    const targetTier = event.target.closest('.tier');
-    if (targetTier && playerElement) {
-        targetTier.appendChild(playerElement);
+    const target = event.target.closest('.tier');
+    if (target && playerElement) {
+        target.appendChild(playerElement);
     }
 });
 
