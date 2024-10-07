@@ -9,7 +9,7 @@ const availableRegions = {
 export default () => {
     while (true) {
         const region = prompt('Region: ')
-        if (Object.keys(availableRegions).includes(region?.toLowerCase())) return region;
+        if (Object.keys(availableRegions).includes(region?.toLowerCase())) return availableRegions[region];
         alert(`Available Regions: ${Object.keys(availableRegions).join(', ').toUpperCase()}`);
     }
 }
