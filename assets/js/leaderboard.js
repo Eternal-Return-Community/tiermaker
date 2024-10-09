@@ -1,8 +1,16 @@
 const SEASON_ID = '14';
-const TEAM_MODE = 'teamMode';
+const TEAM_MODE = 'squad';
+
+let players = {
+    playerTierByUserNum: {},
+    characterById: {},
+    leaderboards: []
+};
+
+let count = 1;
 
 const leaderboard = async (region) => {
-    const response = await fetch(`https://er.dakgg.io/api/v0/leaderboard?page=1${query(region)}`);
+    const response = await fetch(`https://er.dakgg.io/api/v0/leaderboard?page=${count}&${query(region)}`);
     return await response.json();
 }
 
@@ -24,11 +32,24 @@ const characterById = (mostCharacters, characterById) => {
 
 
 export default async (region) => {
-    const data = await leaderboard(region);
-    return data.leaderboards.map(({ userNum, nickname, rank, mostCharacters }) => ({
+    while (true) {
+        const data = await leaderboard(region);
+        if (data.leaderboards.length === 0 || count > 2) break;
+
+        Object.assign(players.playerTierByUserNum, data.playerTierByUserNum);
+        Object.assign(players.characterById, data.characterById);
+
+        data.leaderboards
+            .filter(i => i.mmr >= 3600) //3600 = Platinum IV;
+            .forEach(player => players.leaderboards.push(player))
+
+        count++
+    }
+
+    return players.leaderboards.map(({ userNum, nickname, rank, mostCharacters }) => ({
         nickname,
-        elo: 'https://cdn.dak.gg'.concat(data.playerTierByUserNum[userNum].imageUrl),
+        elo: 'https://cdn.dak.gg'.concat(players.playerTierByUserNum[userNum].imageUrl),
         rank,
-        character: characterById(mostCharacters, data.characterById)
+        character: characterById(mostCharacters, players.characterById)
     }))
 }
