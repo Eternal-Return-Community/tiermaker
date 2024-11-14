@@ -45,13 +45,20 @@ main {
     border: #d79075 5px solid;
     border-radius: 20px;
     padding: 10px;
-}
-
-.tier::before {
-    content: attr(data-tier);
     font-size: 2rem;
     font-weight: bold;
     margin-right: 1rem;
+}
+
+input[type=text] {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-right: 1rem;
+    background: none;
+    border: none;
+    color: #747476;
+    max-width: 30px;
+    cursor: text;
 }
 
 .tier:hover {
@@ -100,6 +107,7 @@ main {
     position: absolute;
     display: block;
     color: white;
+    font-size: 15px;
 }
 
 #download {
