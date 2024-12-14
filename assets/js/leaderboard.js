@@ -1,4 +1,4 @@
-const SEASON_ID = '14';
+const SEASON_ID = '15';
 const TEAM_MODE = 'squad';
 
 let players = {
