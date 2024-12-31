@@ -30,11 +30,14 @@ const characterById = (mostCharacters, characterById) => {
     }
 }
 
-
 export default async (region) => {
+    
     while (true) {
+
+        if(count > 2) break;
+
         const data = await leaderboard(region);
-        if (data.leaderboards.length === 0 || count > 2) break;
+        if (data.leaderboards.length === 0) break;
 
         Object.assign(players.playerTierByUserNum, data.playerTierByUserNum);
         Object.assign(players.characterById, data.characterById);
