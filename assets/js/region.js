@@ -7,9 +7,10 @@ const availableRegions = {
 };
 
 export default () => {
+    const regions = Object.keys(availableRegions).join(', ').toUpperCase();
     while (true) {
-        const region = prompt('Region: ')?.toLowerCase()
+        const region = prompt(`Region: ${regions}`)?.toLowerCase()
         if (Object.keys(availableRegions).includes(region)) return availableRegions[region];
-        alert(`Available Regions: ${Object.keys(availableRegions).join(', ').toUpperCase()}`);
+        alert(`Available Regions: ${regions}`);
     }
 }

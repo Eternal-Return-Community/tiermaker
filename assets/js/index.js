@@ -10,11 +10,11 @@ const characterPool = async (region) => {
 
     for (const { nickname, elo, character } of leaderboards) {
         pool.innerHTML += `
-        <div class='player-info' draggable="true" data-player=${nickname}>
-            <span class='player-name'>${nickname}</span>
-            <img draggable="false" class='player-elo' src='${elo}' alt='Elo'>
-            <img draggable="false" class='player' src='${character.imageUrl}' alt='${character.name}'>
-        </div>
+            <div class='player-info' draggable="true" data-player=${nickname}>
+                <span class='player-name'>${nickname}</span>
+                <img draggable="false" class='player-elo' src='${elo}' alt=${elo}>
+                <img draggable="false" class='player' src='${character.imageUrl}' alt='${character.name}'>
+            </div>
         `;
     }
 
@@ -77,9 +77,7 @@ document.addEventListener("drop", event => {
 
 function startScrolling(speed) {
     if (!scrollInterval) {
-        scrollInterval = setInterval(() => {
-            window.scrollBy(0, speed);
-        }, 16);
+        scrollInterval = setInterval(() => window.scrollBy(0, speed), 16);
     }
 }
 
